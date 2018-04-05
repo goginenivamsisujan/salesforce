@@ -3,29 +3,20 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+    <form method="post" id="sampleForm">
+        <input type="text" name="username" value="goginenivamsisujan@rs.com"/>
+        <input type="text" name="password" value="Vs@sep1992"/>
+        <input type="text" name="grant_type" value="password"/>
+        <input type="text" name="client_id" value="3MVG9d8..z.hDcPL7xahxq2y0ws7GDtaCvDTAL_9HrhbnnKvBENrsH_JaqTiLr2gq3eC7N2e2V.Wl.1uRQeE9"/>
+        <input type="text" name="client_secret" value="3361880452018604121"/>
+    </form>
 </body>
 <script type="text/javascript">
-function createInput(name,value){
-    return $('<input>').attr({
-        name: name,
-        value: value
-    });
-}
-
-$form = $("<form></form>");
-$form.append($("#your_form input").clone());
-$form.append(createInput('client_id', '3MVG9d8..z.hDcPL7xahxq2y0ws7GDtaCvDTAL_9HrhbnnKvBENrsH_JaqTiLr2gq3eC7N2e2V.Wl.1uRQeE9'));
-$form.append(createInput('client_secret', '3361880452018604121'));
-$form.append(createInput('grant_type', 'password'));
-$form.append(createInput('username', 'goginenivamsisujan@rs.com'));
-$form.append(createInput('password', 'Vs@sep1992'));
-
 $.ajax({
   url: "https://login.salesforce.com/services/oauth2/token",
   type: "POST",
   contentType: "application/x-www-form-urlencoded; charset=utf-8",
-  dataType: "json", // expected format for response
-  data: $form.serialize(),
+  data: $("#sampleForm").serialize(),
 
   complete: function() {
     console.log("Completed");
