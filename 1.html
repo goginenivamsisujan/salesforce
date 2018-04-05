@@ -25,7 +25,7 @@ $.ajax({
   type: "POST",
   contentType: "application/x-www-form-urlencoded; charset=utf-8",
   dataType: "json", // expected format for response
-  data: $form,
+  data: $form.serialize(),
 
   complete: function() {
     console.log("Completed");
