@@ -23,8 +23,9 @@ $form.append(createInput('password', 'Vs@sep1992'));
 $.ajax({
   url: "https://login.salesforce.com/services/oauth2/token",
   type: "POST",
+  contentType: "application/x-www-form-urlencoded; charset=utf-8",
   dataType: "json", // expected format for response
-  data: $form,
+  data: $form
 
   complete: function() {
     console.log("Completed");
