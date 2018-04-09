@@ -17,7 +17,7 @@ $.ajax({
   url: "https://login.salesforce.com/services/oauth2/token",
   type: "POST",
   contentType: "application/x-www-form-urlencoded; charset=utf-8",
-  data: $("#sampleForm"),
+  data: $("#sampleForm").serialize(),
 
   complete: function() {
     console.log("Completed");
