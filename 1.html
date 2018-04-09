@@ -12,8 +12,8 @@
     </form>
 </body>
 <script type="text/javascript">
-console.log($("#sampleForm"));   
-var formData = document.getElementById("sampleForm").serialize();
+var formData = $("#sampleForm").serialize();
+console.log(formData);   
   $.ajax({
   url: "https://login.salesforce.com/services/oauth2/token",
   type: "POST",
