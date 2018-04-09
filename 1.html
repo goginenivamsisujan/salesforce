@@ -13,11 +13,11 @@
 </body>
 <script type="text/javascript">
 console.log($("#sampleForm"));   
-$.ajax({
+var formData = document.getElementById("sampleForm").enctype;
+  $.ajax({
   url: "https://login.salesforce.com/services/oauth2/token",
   type: "POST",
-  contentType: "application/x-www-form-urlencoded; charset=utf-8",
-  data: $("#sampleForm").serialize(),
+  data: formData,
 
   complete: function() {
     console.log("Completed");
