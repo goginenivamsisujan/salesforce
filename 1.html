@@ -28,7 +28,7 @@ console.log(formData);
   cache: false,
   contentType: false,
   processData: false,
-  beforeSend: function(xhr){xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');},
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
   complete: function() {
     console.log("Completed");
   },
