@@ -15,9 +15,10 @@
 <script>
 $(document).ready(function(){
     var ltngURL = 'https://deloitteplayground.my.salesforce.com';
+    var appName = "c:LightningOutDemo";
     $.get( "loginsalesforce.php", function( data ) {
         $( ".result" ).html( data );
-	    $Lightning.use(loAppName, function(evt) {
+	    $Lightning.use(appName, function(evt) {
                 var config = {
                     dashboardId: '0FK7F0000002UrhWAE',
                     width: '1200px',
