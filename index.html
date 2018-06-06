@@ -11,25 +11,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/json2/20160511/json2.min.js"></script>
-<script src="https://deloitteplayground.my.salesforce.com/lightning/lightning.out.js"></script>
+<script src="https://vamsisujan-dev-ed.my.salesforce.com/lightning/lightning.out.js"></script>
 <script>
 $(document).ready(function(){
-    var ltngURL = 'https://deloitteplayground.my.salesforce.com';
-    var appName = "c:LightningOutDemo";
     $.get( "loginsalesforce.php", function( data ) {
         $( ".result" ).html( data );
-	    $Lightning.use(appName, function(evt) {
-                var config = {
-                    dashboardId: '0FK7F0000002UrhWAE',
-                    width: '1200px',
-                    height: '600px'
-                }
-			$Lightning.createComponent('wave:waveDashboard', config, 'result', function(cmp, msg, err) {
-                    // Hide the login button
-                    el.style.display = 'none';
-                });
-            }, ltngURL, data);
-    });
+	    $Lightning.use("c:dashboardEmbed",function(){
+			$Lightning.createComponent("c:lightningdashboard",{},"waveresponse",function(cmp){});
+		  },"https://vamsisujan-dev-ed.lightning.force.com",data);
+    	    });
 });
 </script>
 </head>
