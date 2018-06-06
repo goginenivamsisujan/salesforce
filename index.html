@@ -15,7 +15,7 @@
 <script>
 $(document).ready(function(){
     $.get( "loginsalesforce.php", function( data ) {
-        $( ".result.access_token" ).html( data );        
+        $( ".result" ).html( data.access_token );        
     });
 });
 </script>
