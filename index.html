@@ -1,39 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.css"
-	rel="stylesheet" type="text/css" />
-
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/json2/20160511/json2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://vamsisujan-dev-ed.my.salesforce.com/lightning/lightning.out.js"></script>
 <script>
+var appId;
+// Change this if you selected a different name for the Lightning Out Dependency App
+var loAppName = 'c:LightningOutDemo';
+// This is the ID of the Analytics dashboard that you wish to display
+var dashboardId = '01Z7F000000e6fCUAQ';
+var ltngURL = 'https://vamsisujan-dev-ed.lightning.force.com';
+
 $(document).ready(function(){
     $.get( "loginsalesforce.php", function( data ) {
         // The Consumer Key for the Connected App
-    var appId = data;
-
+    appId = data;
     if (window.location.origin.indexOf('localhost') >= 0) {
         // This will be the Consumer Key for the Connected App on localhost
         appId = data;
     }
+    showDashboard();
+    });
+});
 
-    // Change this if you selected a different name for the Lightning Out Dependency App
-    var loAppName = 'c:LightningOutDemo';
-
-    // This is the ID of the Analytics dashboard that you wish to display
-    var dashboardId = '01Z7F000000e6fCUAQ';
-
-    var oauth = force.OAuth.createInstance(appId, loginURL, oauthCallbackURL);
-
-    function showDashboard(el) {
-        oauth.login().then(function(oauthResult) {
-            console.log("Authenticated successfully");
+function showDashboard() {
             $Lightning.use(loAppName, function(evt) {
                 console.log("Creating lightning component");
                 var config = {
@@ -43,12 +33,10 @@ $(document).ready(function(){
                 }
                 $Lightning.createComponent("c:lightningdashboard", config, 'dashboard', function(cmp, msg, err) {
                     // Hide the login button
-                    el.style.display = 'none';
                 });
-            }, ltngURL, oauthResult.accessToken);
-        });
-    }
-});
+        }, ltngURL, appId);
+}
+
 </script>
 </head>
 <body>
