@@ -14,8 +14,20 @@
 <script src="https://deloitteplayground.my.salesforce.com/lightning/lightning.out.js"></script>
 <script>
 $(document).ready(function(){
+    var ltngURL = 'https://deloitteplayground.my.salesforce.com';
     $.get( "loginsalesforce.php", function( data ) {
-        $( ".result" ).html( data );        
+        $( ".result" ).html( data );
+	    $Lightning.use(loAppName, function(evt) {
+                var config = {
+                    dashboardId: '0FK7F0000002UrhWAE',
+                    width: '1200px',
+                    height: '600px'
+                }
+			$Lightning.createComponent('wave:waveDashboard', config, 'result', function(cmp, msg, err) {
+                    // Hide the login button
+                    el.style.display = 'none';
+                });
+            }, ltngURL, data);
     });
 });
 </script>
