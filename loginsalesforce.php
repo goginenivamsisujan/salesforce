@@ -26,6 +26,6 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  //header('Content-Type: application/json');
-  echo $response;
+  header('Content-Type: application/json');
+  echo json_encode($response);
 }
