@@ -1,28 +1,30 @@
 <?php
 
-$request = new HttpRequest();
-$request->setUrl('https://login.salesforce.com/services/oauth2/token');
-$request->setMethod(HTTP_METH_POST);
+$curl = curl_init();
 
-$request->setHeaders(array(
-  'postman-token' => 'e3643de3-0c45-29e5-a3be-7dc89ed4ed5f',
-  'cache-control' => 'no-cache',
-  'content-type' => 'application/x-www-form-urlencoded'
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://login.salesforce.com/services/oauth2/token",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS => "grant_type=password&username=goginenivamsisujan%40rs.com&password=Vssep1992&client_id=3MVG9d8..z.hDcPL7xahxq2y0wj7m.LBYGuSbEsNe2FUDMbT8vhtfHkZOPl6H.Nh6aArxULl90t0C2lvFa8KW&client_secret=7726233253805331684",
+  CURLOPT_HTTPHEADER => array(
+    "cache-control: no-cache",
+    "content-type: application/x-www-form-urlencoded",
+    "postman-token: 1ee2dbdb-d142-96a2-bc5a-fe2faacb5eaa"
+  ),
 ));
 
-$request->setContentType('application/x-www-form-urlencoded');
-$request->setPostFields(array(
-  'grant_type' => 'password',
-  'username' => 'goginenivamsisujan@rs.com',
-  'password' => 'Vssep1992',
-  'client_id' => '3MVG9d8..z.hDcPL7xahxq2y0wj7m.LBYGuSbEsNe2FUDMbT8vhtfHkZOPl6H.Nh6aArxULl90t0C2lvFa8KW',
-  'client_secret' => '7726233253805331684'
-));
+$response = curl_exec($curl);
+$err = curl_error($curl);
 
-try {
-  $response = $request->send();
+curl_close($curl);
 
-  echo $response->getBody();
-} catch (HttpException $ex) {
-  echo $ex;
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
 }
