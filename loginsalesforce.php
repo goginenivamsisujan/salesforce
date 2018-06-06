@@ -26,5 +26,6 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo $response.access_token;
+  $decoded_data = json_decode($response);
+  echo  $decoded_data->{'access_token'};
 }
